@@ -1,6 +1,7 @@
 async function checkVersion(scriptName, actVersion, scriptURL) {
+    // Aktuellste Versionnummer aus GitHub ermitteln
     let searched = '@version';
-    let versLine;
+    let newestVersion;
     try {
         let response = await fetch(scriptURL);
         if (!response.ok) {
@@ -9,15 +10,17 @@ async function checkVersion(scriptName, actVersion, scriptURL) {
     
         const code = await response.text();
         const lineArr = code.split('\n');
-        versLine = lineArr.find(line => line.includes(searched));
+        let versLine = lineArr.find(line => line.includes(searched));
         if (versLine === undefined) {
             throw new Error("ERROR: version not found (link: '" + scriptURL + "')");
         }
+        newestVersion = versLine.split(searched)[1].replaceAll(' ', '');
     } catch (error) {
         console.error('Fehler beim Abrufen des JS-Dokuments:', error);
+        return;
     }
 
-    let newestVersion = versLine.split(searched)[1].replaceAll(' ', '');
+    // Versionnummern vergleichen & ggf. Info ausgeben
     if (actVersion != newestVersion) {
         let divNode = document.createElement("div");
         divNode.className = "alert alert-info";
