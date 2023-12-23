@@ -1,4 +1,4 @@
-function checkVersion(scriptName, actVersion, scriptURL) {
+async function checkVersion(scriptName, actVersion, scriptURL) {
     let searched = '@version';
     let versLine;
     try {
