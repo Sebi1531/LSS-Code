@@ -24,6 +24,6 @@ async function checkVersion(scriptName, actVersion, scriptURL) {
         divNode.appendChild(document.createTextNode("Beim Skript '" + scriptName + "' steht eine neue Version zu Verfügung. Neueste Version: " + newestVersion));
         divNode.appendChild(document.createElement("br"));
         divNode.appendChild(document.createTextNode("Es wird empfohlen, die neueste Version herunterladen, weil veraltete Versionen eventuell nicht mehr funktionieren."));
-        document.insertBefore(divNode, document.firstChild);
+        document.body.insertBefore(divNode, document.body.firstChild);
     }
 }
