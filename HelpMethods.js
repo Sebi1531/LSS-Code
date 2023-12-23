@@ -5,7 +5,13 @@ async function checkVersion(scriptName, actVersion, scriptURL) {
     try {
         let response = await fetch(scriptURL);
         if (!response.ok) {
-            throw new Error("ERROR: '" + scriptURL + "' not reachable.");
+            let divNode = document.createElement("div");
+            divNode.className = "alert alert-info";
+            divNode.appendChild(document.createTextNode("Die Update-Suche für das Skript '" + scriptName + "' ist fehlgeschlagen, weil die aktuellste Version auf GitHub nicht erreichbar war."));
+            divNode.appendChild(document.createElement("br"));
+            divNode.appendChild(document.createTextNode("Es wird empfohlen, selbst zu prüfen, ob ein Update releast wurde, weil veraltete Versionen eventuell nicht mehr funktionieren."));
+            document.body.insertBefore(divNode, document.body.firstChild);
+            return;
         }
     
         const code = await response.text();
