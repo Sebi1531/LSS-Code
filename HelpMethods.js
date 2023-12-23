@@ -21,9 +21,9 @@ async function checkVersion(scriptName, actVersion, scriptURL) {
     if (actVersion != newestVersion) {
         let divNode = document.createElement("div");
         divNode.className = "alert alert-info";
-        divNode.addChild(document.createTextNode("Beim Skript '" + scriptName + "' steht eine neue Version zu Verfügung. Neueste Version: " + newestVersion));
-        divNode.addChild(document.createElement("br"));
-        divNode.addChild(document.createTextNode("Es wird empfohlen, die neueste Version herunterladen, weil veraltete Versionen eventuell nicht mehr funktionieren."));
+        divNode.appendChild(document.createTextNode("Beim Skript '" + scriptName + "' steht eine neue Version zu Verfügung. Neueste Version: " + newestVersion));
+        divNode.appendChild(document.createElement("br"));
+        divNode.appendChild(document.createTextNode("Es wird empfohlen, die neueste Version herunterladen, weil veraltete Versionen eventuell nicht mehr funktionieren."));
         document.insertBefore(divNode, document.firstChild);
     }
 }
